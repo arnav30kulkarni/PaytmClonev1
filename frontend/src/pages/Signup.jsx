@@ -5,8 +5,10 @@ import Heading from "../components/Heading";
 import Inputbox from "../components/Inputbox";
 import Subheading from "../components/Subheading";
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 const Signup=()=>{
+    const navigate = useNavigate();
     const [firstname,setFirstName]=useState("");
     const [lastname,setLastName]=useState("");
     const [username,setUsername]=useState("");
@@ -39,6 +41,7 @@ const Signup=()=>{
                             password
                         })
                         localStorage.setItem("token",response.data.token)
+                        navigate("/signin")
                     }}/>
                     <Bottomwarning text={"Already have an account?"} linktext={"Login"} to={"/signin"}/>
                 </div>

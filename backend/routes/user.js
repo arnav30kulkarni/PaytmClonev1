@@ -47,7 +47,7 @@ router.post("/signup",async(req,res)=>{
     });
 
     const token=jwt.sign({
-        tokenId:dbUser._id
+        userId:dbUser._id
     },secretkey);
 
     res.json({

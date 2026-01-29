@@ -25,7 +25,7 @@ const Users = ()=>{
             }}className="px-2 py-3 border rounded border-b-slate-200 shadow w-full" placeholder="Search..."/>
         </div>
             <div>
-                {users.map(user =><User user={user}/>)}
+                {users.map(user =><User key={user.id} user={user}/>)}
             </div>
         </div>
         </>
@@ -39,7 +39,7 @@ function User({user}){
             <div className="flex">
                 <div className="rounded-full h-12 w-12 bg-slate-400 flex justify-center mt-1 mr-2">
                     <div className="flex flex-col justify-center h-full text-xl">
-                        {user.firstname[0]}
+                        {user.firstname[0].toUpperCase()}
                     </div>
                 </div>
                 <div className=" pl-2 pb-3 flex flex-col justify-center h-full">
@@ -49,7 +49,9 @@ function User({user}){
             </div>
             </div>
             <div className="flex flex-col justify-center h-full">
-                <Button text="Send Money"></Button>
+                <Button onClick={()=>{
+                    navigate("/send?id=" + user.id + "&name=" + user.firstname +" " + user.lastname)
+                }}text="Send Money"></Button>
             </div>
         </div>
     )
