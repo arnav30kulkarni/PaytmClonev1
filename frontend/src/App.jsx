@@ -7,12 +7,20 @@ const Signup =React.lazy(()=>import('./pages/Signup'));
 const Signin =React.lazy(()=>import('./pages/signin'));
 const Dashboard =React.lazy(()=>import('./pages/Dashboard'));
 const SendMoney =React.lazy(()=>import('./pages/SendMoney'));
+const HomeRedirect=React.lazy(()=>import('./pages/HomeRedirect'));
+const Landing=React.lazy(()=>import('./pages/Landing'));
 
 function App() {
   return (
     <div>
       <BrowserRouter>
         <Routes>
+          //Landing
+          <Route path="/" element={<Suspense fallback="loading..."><Landing/></Suspense>}/>
+
+          //Redirection
+          <Route path="/my" element={<Suspense fallback="loading..."><HomeRedirect/></Suspense>}/>
+
           <Route path="/signup" element={<Suspense fallback="loading..."><Signup/></Suspense>} />
           <Route path="/signin" element={<Suspense fallback="loading..."><Signin/></Suspense>} />
           <Route path="/dashboard" element={<Suspense fallback="loading..."><Dashboard/></Suspense>}/>

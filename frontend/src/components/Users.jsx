@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "./Button";
-
+import GetRandomColor from "./AvatarColor";
 
 const Users = ()=>{
     const [users,setUsers]=useState([]);
@@ -33,11 +33,12 @@ const Users = ()=>{
 }
 
 function User({user}){
+    const bgColor = GetRandomColor();
     const navigate = useNavigate();
     return(
         <div className="flex justify-between mt-2">
             <div className="flex">
-                <div className="rounded-full h-12 w-12 bg-slate-400 flex justify-center mt-1 mr-2">
+                <div className={`rounded-full h-12 w-12 ${bgColor} flex justify-center mt -1 mr-2`}>
                     <div className="flex flex-col justify-center h-full text-xl">
                         {user.firstname[0].toUpperCase()}
                     </div>
