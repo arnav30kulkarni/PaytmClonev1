@@ -4,15 +4,26 @@ import Balance from "../components/Balance";
 import Users from "../components/Users";
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 
 
 const Dashboard=()=>{
+
+    const navigate=useNavigate();
+    const token=localStorage.getItem("token");
+
+    useEffect(()=>{
+        if(!token){
+            navigate("/my")
+        }
+    },[token,navigate])
 
     const[balance,setBalance]=useState(0);
     useEffect(()=>{
         axios.get("http://localhost:4500/api/v1/account/balance",{
             headers:{
-                Authorization:"Bearer "+localStorage.getItem("token")
+                Authorization:"Bearer "+token
             }
         })
             .then((res)=>{

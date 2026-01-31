@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Bottomwarning from "../components/Bottomwarning";
 import Button from "../components/Button";
 import Heading from "../components/Heading";
@@ -13,6 +13,13 @@ const Signup=()=>{
     const [lastname,setLastName]=useState("");
     const [username,setUsername]=useState("");
     const [password,setPassword]=useState("");
+    const token=localStorage.getItem("token");
+
+    useEffect(()=>{
+        if(token){
+            navigate("/dashboard");
+        }
+    },[token,navigate])
     
     return(
         <>

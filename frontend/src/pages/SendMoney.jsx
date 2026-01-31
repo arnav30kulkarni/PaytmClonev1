@@ -1,11 +1,20 @@
 import { useSearchParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TransferPopup from "./TransferPopUp";
 
 const SendMoney = () => {
-  const [searchParams] = useSearchParams();
+  //check for token
+  const token=localStorage.getItem("token")
   const navigate = useNavigate();
+
+  useEffect(()=>{
+    if(!token){
+      navigate("/my")
+    }
+  },[token,navigate])
+
+  const [searchParams] = useSearchParams();
 
   const id = searchParams.get("id");
   const name = searchParams.get("name");
@@ -15,6 +24,13 @@ const SendMoney = () => {
   const [popUpStatus, setPopUpStatus] = useState("");
   const [popUpMessage, setPopUpMessage] = useState("");
   const [loading, setLoading] = useState(false);
+
+  //if no id in params:- navigate to /my page
+  useEffect(()=>{
+    if(!id || !name){
+      navigate("/my")
+    }
+  })
 
   const TransferHandler = async () => {
     // Immediate validation

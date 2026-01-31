@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Bottomwarning from "../components/Bottomwarning";
 import Button from "../components/Button";
 import Heading from "../components/Heading";
@@ -8,9 +8,17 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const Signin=()=>{
+    const token = localStorage.getItem("token");
     const[username,setUsername]=useState("");
     const[password,setPassword]=useState("");
     const navigate = useNavigate();
+
+    useEffect(()=>{
+        if(token){
+            navigate("/my")
+        }
+    },[token,navigate])
+
     return(
         <>
         <div className="bg-slate-300 h-screen flex justify-center">
