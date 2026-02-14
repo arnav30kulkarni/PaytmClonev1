@@ -40,7 +40,9 @@ const Signin=()=>{
                             .then((res)=>{
                                 localStorage.setItem("token",res.data.token);
                                 navigate("/dashboard");
-
+                            }).catch((err)=>{
+                                console.error(err);
+                                alert("Failed to signIn")
                             })
                     }} text={"Login"}/>
                     <Bottomwarning text="Don't have an account?" linktext={"Signup now!"} to={"/signup"}/>

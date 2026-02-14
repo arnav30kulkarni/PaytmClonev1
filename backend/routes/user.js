@@ -134,6 +134,18 @@ router.get("/bulk",async(req,res)=>{
             }
         })
     })
-    
 })
+//get Endpoint to get out information 
+
+    router.get("/me",authMiddleware,async(req,res)=>{
+        const user= await User.findById(req.userId);
+        if(!user) return res.status(404).json({msg:"user not found"})
+
+        res.json({
+            firstname:user.firstname,
+            lastname:user.lastname,
+            username:user.username,
+            id:user._id
+        })
+    });
 module.exports=router;

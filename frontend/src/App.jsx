@@ -9,6 +9,8 @@ const Dashboard =React.lazy(()=>import('./pages/Dashboard'));
 const SendMoney =React.lazy(()=>import('./pages/SendMoney'));
 const HomeRedirect=React.lazy(()=>import('./pages/HomeRedirect'));
 const Landing=React.lazy(()=>import('./pages/Landing'));
+const Profile=React.lazy(()=>import('./pages/ProfilePage'));
+const Modify=React.lazy(()=>import('./pages/ModifyUser'))
 
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
           <Route path="/signin" element={<Suspense fallback="loading..."><Signin/></Suspense>} />
           <Route path="/dashboard" element={<Suspense fallback="loading..."><Dashboard/></Suspense>}/>
           <Route path="/send" element={<Suspense fallback="loading..."><SendMoney/></Suspense>}/>
+          <Route path="/profile" element={<Suspense fallback="loading..."><Profile></Profile></Suspense>}/>
+          <Route path="/modify" element={<Suspense fallback="loading..."><Modify/></Suspense>}/>
         </Routes>
       </BrowserRouter>
     </div>
