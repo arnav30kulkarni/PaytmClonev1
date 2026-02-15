@@ -6,6 +6,7 @@ import GetRandomColor from "./AvatarColor";
 import useDebounce from "../hooks/useDebounce";
 
 const Users = () => {
+  const token=localStorage.getItem("token");
   const [users, setUsers] = useState([]);
   const [filter, setFilter] = useState("");
 
@@ -13,7 +14,11 @@ const Users = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4500/api/v1/user/bulk?filter=" + debouncedFilter)
+      .get("http://localhost:4500/api/v1/user/bulk?filter=" + debouncedFilter,{
+        headers:{
+          Authorization:`Bearer ${token}`
+        }
+      })
       .then((response) => {
         const usersWithColor = (response.data.users || []).map((user) => ({
           ...user,
